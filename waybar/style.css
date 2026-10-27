@@ -1,0 +1,166 @@
+/* Catppuccin Mocha-ish glass bar for niri */
+@define-color base     rgba(30, 30, 46, 0.72);
+@define-color surface  rgba(49, 50, 68, 0.85);
+@define-color text     #cdd6f4;
+@define-color subtext  #a6adc8;
+@define-color blue     #89b4fa;
+@define-color mauve    #cba6f7;
+@define-color pink     #f5c2e7;
+@define-color green    #a6e3a1;
+@define-color yellow   #f9e2af;
+@define-color peach    #fab387;
+@define-color red      #f38ba8;
+@define-color teal     #94e2d5;
+
+* {
+    font-family: "CaskaydiaCove Nerd Font", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 0;
+    border: none;
+}
+
+window#waybar {
+    background: @base;
+    color: @text;
+    border-radius: 14px;
+    border: 1px solid rgba(203, 166, 247, 0.25);
+}
+
+tooltip {
+    background: rgba(30, 30, 46, 0.95);
+    border: 1px solid @mauve;
+    border-radius: 10px;
+}
+
+tooltip label {
+    color: @text;
+}
+
+/* Shared pill style */
+#custom-launcher,
+#workspaces,
+#window,
+#clock,
+#mpris,
+#pulseaudio,
+#backlight,
+#network,
+#battery,
+#tray,
+#custom-notification,
+#custom-power {
+    background: @surface;
+    border-radius: 10px;
+    padding: 0 12px;
+    margin: 5px 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#custom-launcher {
+    color: @blue;
+    font-size: 17px;
+    margin-left: 5px;
+    padding: 0 14px 0 12px;
+}
+
+#custom-launcher:hover {
+    background: @blue;
+    color: #1e1e2e;
+}
+
+#workspaces {
+    padding: 0 4px;
+}
+
+#workspaces button {
+    color: @subtext;
+    padding: 0 6px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    background: transparent;
+    min-width: 16px;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#workspaces button.active,
+#workspaces button.focused {
+    color: #1e1e2e;
+    background: linear-gradient(45deg, @blue, @mauve);
+    min-width: 34px;
+}
+
+#workspaces button:hover {
+    color: @text;
+    background: rgba(137, 180, 250, 0.25);
+    box-shadow: none;
+    text-shadow: none;
+}
+
+#workspaces button.urgent {
+    color: #1e1e2e;
+    background: @red;
+}
+
+#window {
+    color: @text;
+    font-weight: 500;
+}
+
+window#waybar.empty #window {
+    background: transparent;
+    padding: 0;
+}
+
+#clock {
+    color: @mauve;
+    padding: 0 16px;
+}
+
+#mpris          { color: @green; }
+#pulseaudio     { color: @blue; }
+#pulseaudio.muted { color: @subtext; }
+#backlight      { color: @yellow; }
+#network        { color: @teal; }
+#network.disconnected { color: @red; }
+#battery        { color: @green; }
+#battery.charging, #battery.plugged { color: @teal; }
+#battery.warning:not(.charging) { color: @peach; }
+
+#battery.critical:not(.charging) {
+    color: #1e1e2e;
+    background: @red;
+    animation: blink 1s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+    to { background: rgba(243, 139, 168, 0.4); }
+}
+
+#custom-notification { color: @pink; }
+
+#custom-power {
+    color: @red;
+    margin-right: 5px;
+    padding: 0 14px 0 12px;
+}
+
+#custom-power:hover {
+    background: @red;
+    color: #1e1e2e;
+}
+
+#mpris:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#network:hover,
+#battery:hover,
+#clock:hover,
+#custom-notification:hover {
+    background: rgba(88, 91, 112, 0.95);
+}
+
+#tray > .needs-attention {
+    background: @red;
+    border-radius: 8px;
+}
